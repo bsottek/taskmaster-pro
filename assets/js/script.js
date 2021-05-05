@@ -47,6 +47,46 @@ var saveTasks = function() {
 
 
 
+$(".list-group").on("click","p", function() {
+  var text = $(this)
+    .text()
+    .trim();
+  var textInput = $("<textarea>")
+    .addClass("form-control")
+    .val(text);
+  $(this).replaceWith(textInput);
+  textInput.trigger("focus");
+});
+
+$(".list-group").on("blur", "textarea",function(){
+  //get textarea's current value/text
+  var text = $(this)
+    .val()
+    .trim();
+
+  //get parent ul's id attr
+  var status = $(this)
+    .closest(".list-group")
+    .attr("id")
+    .replace("list-", "");
+
+    //get task position in th list of other li elements
+    var index = $(this)
+      .closest(".list-group-item")
+      .index();
+
+    tasks[status][index].text = text;
+    saveTasks();
+
+    //recreate p
+    var taskP = $("<p>")
+      .addClass("m-1")
+      .text(text);
+
+    //replace textarea with p element
+    $(this).replaceWith(taskP);
+})
+
 
 // modal was triggered
 $("#task-form-modal").on("show.bs.modal", function() {
