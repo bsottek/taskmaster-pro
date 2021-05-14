@@ -234,6 +234,7 @@ $(".card .list-group").sortable({
   }
 });
 
+//trash tasks
 $("#trash").droppable({
   accept: ".card .list-group-item",
   tolerance: "touch",
