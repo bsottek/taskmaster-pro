@@ -249,6 +249,12 @@ $("#trash").droppable({
     console.log("out");
   }
 })
+
+//datepicker
+$("#modalDueDate").datepicker({
+  minDate: 1
+});
+
 // load tasks for the first time
 loadTasks();
 
